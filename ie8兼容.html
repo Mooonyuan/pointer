@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IE8 兼容</title>
+    <style>
+        .borer-radius {
+            position: relative;
+            z-index: 10;
+        }
+
+        .border {
+            width: 50px;
+            height: 20px;
+            background-color: #999;
+            border-radius: 20px;
+            behavior: url(css/PIE.htc);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- border-radius -->
+    <div class="border-radius">
+        <div class="border"></div>
+    </div>
+    <!-- input-placeholder -->
+    <div class="input">
+        <input type="text" onblur="if (this.value == '') {this.value = '搜索';}" onfocus="if (this.value == '搜索') {this.value = '';}"
+            value="搜索">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>websocket test</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <button onclick="WebSocketTest()">连接</button>
+        <button type="button" onclick="closeMessage()">断开</button>
+        <input type="text" id="ws_input" value="">
+        <button type="button" id="btn_submit" onclick="sendMessage()">发送</button>
+    </div>
+    <script>
+        var ws;
+
+        function WebSocketTest() {
+            if ("WebSocket" in window) {
+                alert("您的浏览器支持 WebSocket!");
+
+                // 打开一个 web socket
+                ws = new WebSocket("ws://123.207.167.163:9010/ajaxchattest");
+
+                switch (ws.readyState) {
+                    case WebSocket.CONNECTING:
+                        console.log('正在连接')
+                        break;
+                    case WebSocket.OPEN:
+                        console.log('连接成功，可以通信')
+                        break;
+                    case WebSocket.CLOSING:
+                        console.log('正在关闭')
+                        break;
+                    case WebSocket.CLOSED:
+                        console.log('已经关闭，或者打开连接失败')
+                        break;
+                    default:
+                        // this never happens
+                        break;
+                }
+
+                ws.onopen = function () {
+                    // Web Socket 已连接上，使用 send() 方法发送数据
+                    alert("已连接...");
+                    console.log(ws)
+                };
+
+                ws.onmessage = function (evt) {
+                    var received_msg = evt.data;
+                    alert('收到的消息：' + received_msg);
+                };
+
+                ws.onclose = function () {
+                    // 关闭 websocket
+                    alert("连接已关闭...");
+                };
+            } else {
+                // 浏览器不支持 WebSocket
+                alert("您的浏览器不支持 WebSocket!");
+            }
+        }
+        //发送消息
+        function sendMessage() {
+            if (ws != null && ws.readyState == 1) {
+                ws.send(document.getElementById("ws_input").value);
+                document.getElementById("ws_input").value = "";
+            }
+        }
+        //断开连接
+        function closeMessage() {
+            if (ws != null && ws.readyState == 1) {
+                ws.close();
+            }
+        }
+    </script>
+</body>
+
+</html>

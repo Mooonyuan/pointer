@@ -1,0 +1,6 @@
+api
+https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket
+服务器
+http://coolaf.com/tool/chattest
+教程
+https://www.cnblogs.com/fuqiang88/p/5956363.html
