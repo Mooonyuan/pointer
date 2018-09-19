@@ -2,36 +2,89 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>IE8 兼容</title>
-    <style>
-        .borer-radius {
-            position: relative;
-            z-index: 10;
-        }
-
-        .border {
-            width: 50px;
-            height: 20px;
-            background-color: #999;
-            border-radius: 20px;
-            behavior: url(css/PIE.htc);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IE8 兼容</title>
+  <style>
+    .borer-radius {
+        position: relative;
+        z-index: 10;
+    }
+    .border {
+        width: 50px;
+        height: 20px;
+        background-color: #999;
+        border-radius: 20px;
+        behavior: url(css/PIE.htc);
+    }
+    .table{
+      /* ie 不兼容会导致两行合并，不显示背景 */
+      /* border-collapse: collapse; */
+      background-color: #666;
+      margin-top: 10px;
+    }
+    .table td,th{
+      /* 不兼容ie写法 */
+      /* border: 1px solid #666 */
+      background-color: #fff;
+    }
+  .table .item td{
+    background-color: #eee;
+  }
     </style>
 </head>
 
 <body>
-    <!-- border-radius -->
-    <div class="border-radius">
-        <div class="border"></div>
-    </div>
-    <!-- input-placeholder -->
-    <div class="input">
-        <input type="text" onblur="if (this.value == '') {this.value = '搜索';}" onfocus="if (this.value == '搜索') {this.value = '';}"
-            value="搜索">
-    </div>
+  <!-- border-radius -->
+  <div class="border-radius">
+    <div class="border"></div>
+  </div>
+  <!-- input-placeholder -->
+  <div class="input">
+    <input type="text" onblur="if (this.value == '') {this.value = '搜索';}" onfocus="if (this.value == '搜索') {this.value = '';}"
+      value="搜索">
+  </div>
+  <!-- table collspace -->
+  <!-- 设置border的时候，并且有background-color的时候，border-collapse:collapse 会自动合并
+cellspacing 用背景代替border值 cellspacing间距为1 设置td的背景
+  -->
+  <table class="table" cellspacing="1">
+    <thead>
+      <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>test1</td>
+        <td>test2</td>
+        <td>test3</td>
+      </tr>
+      <tr>
+        <td>test1</td>
+        <td>test2</td>
+        <td>test3</td>
+      </tr>
+      <tr class="item">
+        <td>test1</td>
+        <td>test2</td>
+        <td>test3</td>
+      </tr>
+      <tr class="item">
+        <td>test1</td>
+        <td>test2</td>
+        <td>test3</td>
+      </tr>
+      <tr>
+        <td>test1</td>
+        <td>test2</td>
+        <td>test3</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 
 </html>
